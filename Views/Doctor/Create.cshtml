@@ -1,0 +1,52 @@
+﻿@model Hospital.Models.Doctor;
+@{
+    ViewBag.Title = "Add Doctor";
+}
+
+@using (Html.BeginForm("create","Doctor",FormMethod.Post))
+{
+    <div clas="container">
+        <div class="form-group">
+           <label asp-for="Name" class="control-label"></label>
+            @Html.TextBoxFor(x=>x.Name,new{@class="form-control"})
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Experience" class="control-label"></label>
+            @Html.TextBoxFor(x=>x.Experience,new{@class="form-control"})
+            <span asp-validation-for="Experience" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Speciality" class="control-label"></label>
+            @Html.TextBoxFor(x=>x.Speciality,new{@class="form-control"})
+            <span asp-validation-for="Speciality" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SurgerySuccessRate" class="control-label"></label>
+            @Html.TextBoxFor(x=>x.SurgerySuccessRate,new{@class="form-control"})
+            <span asp-validation-for="SurgerySuccessRate" class="text-danger"></span>
+        </div>
+        <div class="form-group"  form-check">
+            @Html.LabelFor(x=>x.Availability,"Availability")
+            @Html.CheckBoxFor(x=>x.Availability,new{@class="form-check-input"})
+            @*<label class="form-check-label">
+               Available <input class="form-check-input" asp-for="Availability" /> 
+            </label>
+            <span asp-validation-for="Availability" class="text-danger"></span>*@
+        </div>
+        <div class="form-group">
+            <label asp-for="Education" class="control-label"></label>
+            @Html.TextBoxFor(x=>x.Education,new{@class="form-control"})
+            <span asp-validation-for="Education" class="text-danger"></span>
+        </div>
+        <br/>
+        <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+    </div>
+}
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

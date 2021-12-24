@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Hospital.Models.Department>
+
+@{
+    ViewData["Title"] = "Department";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table" style="text-align:center;">
+    <thead style="background-color:black; color:white;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartmentName)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-info" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a> |
+                <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fa fa-info-circle"></i></a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,97 @@
+﻿@model Hospital.Models.Doctor;
+@{
+    ViewBag.Title = "Edit Doctor Record";
+}
+<h1>Details</h1>
+
+<div>
+    <h4>Doctor</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+           @Html.DisplayNameFor(model=>model.Name)
+        </dt>
+        <dd class="col-sm-10">
+             @if (Model.Name!=null)
+            {
+                @Html.DisplayFor(model=>model.Name)
+            }
+            else
+            {
+                <span>null</span>
+            }
+            
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Experience)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Experience!=null)
+            {
+                @Html.DisplayFor(model=>model.Experience)
+            }
+            else
+            {
+             <span>null</span>       
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Speciality)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Speciality!=null)
+            {
+                @Html.DisplayFor(model=>model.Speciality)
+            }
+            else
+            {
+             <span>null</span>       
+            }    
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.SurgerySuccessRate)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.SurgerySuccessRate!=null)
+            {
+               @Html.DisplayFor(model=>model.SurgerySuccessRate)
+            }
+            else
+            {
+             <span>null</span>       
+            }
+            
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Availability)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Availability)
+            {
+                <i style="color:green;" class="fa fa-check"></i>
+            }
+            else
+            {
+                <i style="color:red;" class="fa fa-times-circle"></i>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model=>model.Education)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Education!=null)
+            {
+                @Html.DisplayFor(model=>model.Education)
+            }
+            else
+            {
+             <span>null</span>       
+            }
+            
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model?.Id">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
