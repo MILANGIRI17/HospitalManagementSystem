@@ -1,8 +1,8 @@
 ﻿namespace Hospital.Models
 {
-    public class Treatments
+    public class Package
     {
         public int Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
     }
 }

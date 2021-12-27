@@ -1,4 +1,4 @@
-﻿@model Hospital.Models.EmergencyServiceType
+﻿@model Hospital.Models.Service
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>EmergencyServiceType</h4>
+    <h4>Services</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -16,9 +16,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <dt class = "col-sm-2">
+            Treatment Types
+        </dt>
+        <dd class = "col-sm-10">
+             @Model.Treatment.Name 
+        </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" class="btn btn-info" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <a asp-action="Index" class=" btn btn-secondary">Back to List</a>
 </div>

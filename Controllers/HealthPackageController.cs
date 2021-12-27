@@ -37,7 +37,7 @@ namespace Hospital.Controllers
         // POST: HealthPackageController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(HealthPackages data)
+        public ActionResult Create(Package data)
         {
             try
             {
@@ -61,7 +61,7 @@ namespace Hospital.Controllers
         // POST: HealthPackageController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, HealthPackages data)
+        public ActionResult Edit(int id, Package data)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace Hospital.Controllers
         // POST: HealthPackageController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, HealthPackages data)
+        public ActionResult Delete(int id, Package data)
         {
             try
             {

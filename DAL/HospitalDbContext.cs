@@ -13,9 +13,11 @@ namespace Hospital.DAL
             }
         
         public DbSet<Department> Departments { get; set; }
-        public DbSet<EmergencyServiceType> EmergencyServiceTypes { get; set; }
+        
+        public DbSet<Service> Services { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<HealthPackages> HealthPackages { get; set; }
-        public DbSet<Treatments> Treatments { get; set; }
+        public DbSet<Package> HealthPackages { get; set; }
+        public DbSet<Treatment> Treatments { get; set; }
+        public object TreatmentTypes { get; internal set; }
     }
 }

@@ -3,45 +3,48 @@ using Hospital.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hospital.Controllers
 {
-    public class TreatmentController : Controller
+    public class ServicesController : Controller
     {
         private readonly HospitalDbContext db;
 
-        public TreatmentController(HospitalDbContext _db)
+        public ServicesController(HospitalDbContext _db)
         {
             db = _db;
         }
-        // GET: TreatmentController
+        // GET: ServicesController
         public ActionResult Index()
         {
-            var model = db.Treatments.ToList();
+            var model = db.Services.Include(s => s.Treatment);
+
             return View(model);
         }
 
-        // GET: TreatmentController/Details/5
+        // GET: ServicesController/Details/5
         public ActionResult Details(int id)
         {
-            var model = db.Treatments.Find(id);
+            var model = db.Services.Include(s => s.Treatment).FirstOrDefault(s=>s.Id==id);
             return View(model);
         }
 
-        // GET: TreatmentController/Create
+        // GET: ServicesController/Create
         public ActionResult Create()
         {
+            ViewData["treatments"] = db.Treatments.ToList();
             return View();
         }
 
-        // POST: TreatmentController/Create
+        // POST: ServicesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Treatment data)
+        public ActionResult Create(Service data)
         {
             try
             {
-                db.Treatments.Add(data);
+                db.Services.Add(data);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -51,24 +54,28 @@ namespace Hospital.Controllers
             }
         }
 
-        // GET: TreatmentController/Edit/5
+        // GET: ServicesController/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = db.Treatments.Find(id);
+            var model = db.Services.Include(s=>s.Treatment).FirstOrDefault(s=>s.Id==id);
+            ViewData["treatments"] = db.Treatments.ToList();
+           
+           
             return View(model);
         }
 
-        // POST: TreatmentController/Edit/5
+        // POST: ServicesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Treatment data)
+        public ActionResult Edit(int? id, Service data)
         {
             try
             {
-                var model = new Treatment();
-                model.Name = data.Name;
-                db.Treatments.Update(model);
-                db.SaveChanges();
+                if (id!=null)
+                {
+                    db.Services.Update(data);
+                    db.SaveChanges();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -77,30 +84,30 @@ namespace Hospital.Controllers
             }
         }
 
-        // GET: TreatmentController/Delete/5
+        // get: servicescontroller/delete/5
         public ActionResult Delete(int id)
         {
-            var model = db.Treatments.Find(id);
+            var model = db.Services.Include(s => s.Treatment).FirstOrDefault(wh => wh.Id == id);
             return View(model);
         }
 
-        // POST: TreatmentController/Delete/5
+        // post: servicescontroller/delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Treatment data)
+        public ActionResult Delete(int id,Service data)
         {
             try
             {
-                var model = db.Treatments.Find(id);
-                db.Treatments.Remove(model);
+                var model = db.Services.Find(id);
+                db.Services.Remove(model);
                 db.SaveChanges();
                 return RedirectToAction(nameof(Index));
+
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
         }
-
     }
 }
